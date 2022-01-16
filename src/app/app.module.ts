@@ -9,14 +9,17 @@ import * as fromApp from './store/app.reducer';
 import { UserService } from './services/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AppComponent } from './app.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 function UserServiceFactory(userService: UserService) {
   return () => userService.load();
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SpinnerComponent, MainLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

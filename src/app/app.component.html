@@ -1,3 +1,6 @@
-<p *ngIf="isLoading">Initializing the app...</p>
-<p *ngIf="isLoaded">App is ready!</p>
-<p *ngIf="isError">Something went wrong, please try again later!</p>
+<div class="app">
+  <app-spinner *ngIf="isLoading"></app-spinner>
+  <!-- <h1 *ngIf="isLoaded">App is ready!</h1> -->
+  <p *ngIf="isError">Something went wrong, please try again later!</p>
+  <router-outlet *ngIf="isLoaded"></router-outlet>
+</div>
