@@ -1,7 +1,9 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "env": {
     "node": true
   },
@@ -19,5 +21,15 @@
     ],
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/array-type": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:ngrx/recommended"
+      ]
+    }
+  ]
 }
