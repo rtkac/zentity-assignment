@@ -1,6 +1,12 @@
 <div class="app">
-  <app-spinner *ngIf="isLoading"></app-spinner>
-  <!-- <h1 *ngIf="isLoaded">App is ready!</h1> -->
-  <p *ngIf="isError">Something went wrong, please try again later!</p>
+  <div class="app-loading" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+  <div class="app-error" *ngIf="isError">
+    <span>
+      <mat-icon color="warn">report_problem</mat-icon>
+    </span>
+    <h2>Something went wrong, please try again later!</h2>
+  </div>
   <router-outlet *ngIf="isLoaded"></router-outlet>
 </div>

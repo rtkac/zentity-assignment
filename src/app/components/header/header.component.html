@@ -1,0 +1,25 @@
+<nav class="header container m-auto" ngClass="{{ className }}">
+  <div class="header__top">
+    <div class="back">
+      <button type="button" (click)="handleRoute()" *ngIf="!!headerParamsSubscription$.value?.routePath">
+        <img src="assets/imgs/next_white.png" alt="back icon" />
+      </button>
+    </div>
+    <div class="logo">
+      <a href="https://zentity.com" target="_blank">
+        <img src="assets/imgs/logo_zentity.png" alt="Logo Zentity" class="img-fluid" />
+      </a>
+    </div>
+    <div class="avatar">
+      <img src="assets/imgs/selfie.png" alt="John Cena" class="img-fluid" *ngIf="isUserOnboarded" />
+    </div>
+  </div>
+  <div class="header__bottom">
+    <div *ngIf="!!headerParamsSubscription$.value?.title">
+      <span>
+        <img src="assets/imgs/slash.png" alt="slash icon" class="img-fluid" />
+      </span>
+      <h3>{{ headerParamsSubscription$.value?.title }}</h3>
+    </div>
+  </div>
+</nav>

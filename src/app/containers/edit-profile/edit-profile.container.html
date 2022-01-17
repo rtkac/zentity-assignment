@@ -1,1 +1,12 @@
-<p>edit-profile</p>
+<div class="container m-auto">
+  <div class="profile">
+    <div class="profile__top">
+      <app-header className="profile-header"></app-header>
+      <app-edit-profile-form [fields]="fields$ | async"></app-edit-profile-form>
+      <app-edit-profile-socials></app-edit-profile-socials>
+    </div>
+    <div class="profile__bottom">
+      <button mat-flat-button class="with-icon" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+</div>

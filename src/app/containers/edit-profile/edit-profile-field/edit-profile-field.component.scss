@@ -1,0 +1,43 @@
+@import 'custom-palettes';
+
+.buttons {
+  position: relative;
+  top: -0.4375rem;
+  &-icon {
+    top: -0.125rem;
+  }
+}
+
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:last-of-type {
+    margin-left: 1rem;
+  }
+
+  &-delete {
+    color: mat-color($warn);
+  }
+  &-save {
+    color: mat-color($accent);
+  }
+}
+
+.icon-btn {
+  &:last-of-type {
+    margin-left: 0.5rem;
+  }
+
+  &.mat-icon-button {
+    font-size: 1.15rem !important;
+  }
+
+  &-save {
+    top: -0.125rem;
+    &.mat-icon-button {
+      font-size: 1rem !important;
+    }
+  }
+}

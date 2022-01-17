@@ -1,0 +1,16 @@
+ul {
+  list-style: none;
+  display: flex;
+  padding: 0 0.75em;
+  margin-top: 0;
+  li {
+    display: flex;
+    &:not(:last-child) {
+      margin-right: 0.85rem;
+    }
+  }
+  img {
+    width: 1.5rem;
+    height: auto;
+  }
+}

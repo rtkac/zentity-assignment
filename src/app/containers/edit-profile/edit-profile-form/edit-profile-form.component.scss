@@ -1,0 +1,15 @@
+.edit-profile {
+  &-form-wrapper {
+    margin-top: 2.25rem;
+  }
+
+  &-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0 4rem;
+    .mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}

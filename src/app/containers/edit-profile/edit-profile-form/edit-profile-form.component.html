@@ -1,0 +1,16 @@
+<div class="edit-profile-form-wrapper">
+  <form [formGroup]="profileEditForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of fields; let i = index">
+      <app-edit-profile-field
+        [field]="field"
+        [form]="profileEditForm"
+        (handleDelete)="onDelete(i)"
+        (handleClear)="onClear($event)"
+      ></app-edit-profile-field>
+    </div>
+  </form>
+  <p class="edit-profile-empty" *ngIf="!fields?.length">
+    <mat-icon color="warn">info</mat-icon>
+    <span>There are no fields to edit!</span>
+  </p>
+</div>

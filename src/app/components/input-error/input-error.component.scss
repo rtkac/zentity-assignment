@@ -1,0 +1,24 @@
+@import 'custom-palettes';
+@import 'variables';
+
+.input-error {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: $white;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  padding-right: 1.5rem;
+  span {
+    display: flex;
+  }
+  img {
+    height: auto;
+    width: 1.4rem;
+    margin-right: 1.5rem;
+  }
+
+  &-default {
+    color: mat-color($warn);
+  }
+}

@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+@import '~@angular/material/theming';
+
+@include mat.core();
+
+$primary-palette: (
+  500: #14173d,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$accent-palette: (
+  500: #1fd6ba,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$warn-palette: (
+  500: #ea573e,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+$zentity-assignment-primary: mat.define-palette($primary-palette);
+$zentity-assignment-accent: mat.define-palette($accent-palette);
+$zentity-assignment-warn: mat.define-palette($warn-palette);
+
+$zentity-assignment-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $zentity-assignment-primary,
+      accent: $zentity-assignment-accent,
+      warn: $zentity-assignment-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($zentity-assignment-theme);
+
+// Theme configuration
+$primary: mat-palette($zentity-assignment-primary);
+$accent: mat-palette($zentity-assignment-accent);
+$warn: mat-palette($zentity-assignment-warn);
+
+$theme: mat-light-theme($primary, $accent, $warn);

@@ -1,0 +1,26 @@
+<form [formGroup]="usernameForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field appearance="outline" [floatLabel]="'never'" class="w-100">
+      <input
+        matInput
+        placeholder="Here, please!"
+        formControlName="username"
+        [ngClass]="{ 'input-error': formSubmitAttempt && username?.untouched }"
+      />
+      <mat-error
+        *ngIf="!username?.errors?.['pattern'] && (username?.errors?.['required'] || username?.errors?.['minlength'] || username?.errors?.['maxlength'])"
+      >
+        <app-input-error label="Ooops! Your username must be between 3 and 20 characters long."></app-input-error>
+      </mat-error>
+      <mat-error *ngIf="username?.errors?.['pattern']">
+        <app-input-error label="Ooops! Your username must contain only letters, numbers and spaces."></app-input-error>
+      </mat-error>
+      <mat-error *ngIf="username?.errors?.['usernameInvalid']">
+        <app-input-error label="Ooops! Your username is not valid."></app-input-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-flat-button color="primary" class="with-icon">Continue</button>
+  </div>
+</form>

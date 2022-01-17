@@ -1,9 +1,9 @@
 {
   "onboarded": false,
   "user": {
-    "username": "John",
+    "name": "John",
     "surname": "Cena",
-    "displayName": "Invisible John",
+    "username": "Invisible John",
     "password": "PasswordPlease123",
     "contact": {
       "email": "john.cena@wwe.com",

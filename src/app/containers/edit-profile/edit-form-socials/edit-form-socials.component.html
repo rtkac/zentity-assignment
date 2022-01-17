@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let socialItem of socialItems">
+    <a href="{{ socialItem.url }}" target="_blank">
+      <img src="assets/imgs/socials/{{ socialItem.id }}.png" alt="{{ socialItem.name }}" />
+    </a>
+  </li>
+</ul>

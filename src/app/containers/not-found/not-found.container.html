@@ -1,1 +1,21 @@
-<p>not-found</p>
+<div class="container m-auto">
+  <div class="not-found">
+    <div class="not-found__top">
+      <app-header></app-header>
+      <div>
+        <span>
+          <mat-icon color="warn">report_problem</mat-icon>
+        </span>
+        <h1>404</h1>
+        <h2 class="title color-warn">Page not found!</h2>
+      </div>
+    </div>
+    <div class="not-found__bottom">
+      <div>
+        <button mat-flat-button color="primary" class="with-icon" routerLink="{{isUserOnboarded ? 'profile' : ''}}">
+          {{isUserOnboarded ? 'Profile' : 'Home'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

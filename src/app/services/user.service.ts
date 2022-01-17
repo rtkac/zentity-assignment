@@ -3,28 +3,30 @@ import { HttpClient } from '@angular/common/http';
 
 import { UserData } from '../models/user.model';
 
-import * as UserActions from '../store/user/user.actions';
-import * as fromApp from '../store/app.reducer';
-import { Store } from '@ngrx/store';
+import { UserFacade } from '../store/user/user.facade';
 
 @Injectable()
 export class UserService {
   private dataUrl = './assets/data.json';
 
-  constructor(private http: HttpClient, private store: Store<fromApp.AppState>) {}
+  constructor(private http: HttpClient, private userFacade: UserFacade) {}
 
-  public load(): void {
-    this.store.dispatch(new UserActions.FetchUser());
-    // simulate initializing the app
+  public async loadUser(): Promise<void> {
+    this.userFacade.fetchUser();
+    // simulate app initializing
     setTimeout(() => {
-      this.http.get<UserData>(this.dataUrl).subscribe(
-        (response) => {
-          this.store.dispatch(new UserActions.FetchUserSuccess(response));
-        },
-        () => {
-          this.store.dispatch(new UserActions.FetchUserFailed());
-        },
-      );
+      return new Promise((resolve) => {
+        this.http.get<UserData>(this.dataUrl).subscribe({
+          next: (response) => {
+            this.userFacade.fetchUserSuccess(response);
+            return resolve(response);
+          },
+          error: () => {
+            this.userFacade.fetchUserFailed();
+            return resolve(null);
+          },
+        });
+      });
     }, 1000);
   }
 }

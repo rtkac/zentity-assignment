@@ -1,0 +1,72 @@
+<div [formGroup]="form">
+  <div [ngSwitch]="field.controlType">
+    <mat-form-field
+      appearance="outline"
+      class="input-white w-100"
+      ngClass="{{ field.key === editedField ? '' : 'readonly' }}"
+    >
+      <mat-label>{{ field.label }}</mat-label>
+      <input
+        matInput
+        *ngSwitchCase="'textbox'"
+        [formControlName]="field.key"
+        [id]="field.key"
+        [type]="field.type"
+        [readonly]="field.key !== editedField"
+      />
+
+      <div matSuffix class="buttons" ngClass="{{ field.key === editedField ? 'buttons-icon' : '' }}">
+        <button
+          type="button"
+          aria-label="Delete"
+          class="edit-btn edit-btn-delete"
+          (click)="onDelete()"
+          *ngIf="field.key !== editedField"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          aria-label="Edit"
+          class="edit-btn edit-btn-save"
+          (click)="onEdit()"
+          *ngIf="field.key !== editedField"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          color="warn"
+          mat-icon-button
+          aria-label="Clear"
+          class="icon-btn"
+          (click)="onClear()"
+          *ngIf="field.key === editedField"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <button
+          type="button"
+          color="accent"
+          mat-icon-button
+          aria-label="Save"
+          class="icon-btn icon-btn-save"
+          (click)="onSave()"
+          *ngIf="field.key === editedField"
+        >
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+
+      <mat-error *ngIf="isValidRequired">
+        <app-input-error label="{{ field.label }} is a required field." [hideIcon]="true"></app-input-error>
+      </mat-error>
+      <mat-error *ngIf="!isValidRequired && isValidEmail">
+        <app-input-error label="E-mail is not valid." [hideIcon]="true"></app-input-error>
+      </mat-error>
+      <mat-error *ngIf="isValidPattern">
+        <app-input-error label="{{ field.label }} is not valid." [hideIcon]="true"></app-input-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+</div>

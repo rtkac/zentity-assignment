@@ -1,101 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import 'reboot';
-@import 'variables';
+@import 'styles/custom-palettes';
+@import 'styles/variables';
+@import 'styles/normalize.css';
 
 html,
 body {
-  font-family: 'Roboto', sans-serif;
-  color: $primary;
+  height: 100%;
+  color: mat-color($primary);
 }
 
-h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 2rem;
-  text-align: center;
-}
-h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 2rem;
-  text-align: center;
-}
-h3 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 2rem;
-  text-align: center;
-}
-h4 {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 2rem;
-}
-h5 {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 2rem;
-}
-h6 {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 2rem;
-}
-p {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5rem;
-}
-
-.btn {
-  position: relative;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 2rem;
-  border: none;
-  cursor: pointer;
-  padding: 0.7rem 3.8rem 0.7rem 1rem;
-  &:after {
-    content: '';
-    background-image: url('assets/icons/next_white.png');
-    background-size: cover;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 3rem;
+.app {
+  height: 100%;
+  &-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
   }
-  &.btn--primary {
-    background-color: $primary;
-    color: $white;
-    border: 0.1rem solid $white;
-  }
-  &.btn--secondary {
-    background-color: $white;
-    color: $secondary;
-    border: 2px solid $secondary;
+  &-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 2.5rem;
+    .mat-icon {
+      font-size: 3rem;
+      width: 3.125rem;
+      height: 3.125rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
-// backgrounds
+.container {
+  display: flex;
+  width: 22.1875rem;
+  max-width: 100%;
+  height: 100%;
+}
+
+.img-fluid {
+  max-width: 100%;
+}
+
+// BACKGROUNDS
 .bg {
   &-primary {
-    background-color: $primary;
+    background-color: mat-color($primary);
   }
 }
 
-// colors
+// COLORS
 .color {
-  &-secondary {
-    color: $secondary;
+  &-primary {
+    color: mat-color($primary);
   }
-  &-tertiary {
-    color: $tertiary;
+  &-accent {
+    color: mat-color($accent);
+  }
+  &-warn {
+    color: mat-color($warn);
   }
   &-white {
     color: $white;
   }
   &-grey {
     color: $grey;
+  }
+}
+
+// WIDTH
+.w-100 {
+  width: 100%;
+}
+// HEIGHT
+.h-100 {
+  height: 100%;
+}
+
+// MARGINS
+.m-auto {
+  margin: 0 auto;
+}
+
+// ---------------- MATERIAL STYLES ----------------
+// MATERIAL BUTTON
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
+  border-radius: 0 !important;
+  border: 0.125rem solid $white !important;
+}
+.mat-flat-button {
+  min-width: 170px !important;
+  text-align: left !important;
+  padding: 0.35rem 1.15rem !important;
+  &:not(.mat-primary, .mat-warn, .mat-accent) {
+    color: mat-color($warn);
+    border: 0.125rem solid mat-color($warn) !important;
+  }
+  &.with-icon {
+    padding-right: 5rem !important;
+    &:after {
+      content: '';
+      background-image: url('assets/imgs/next_warn.png');
+      background-size: cover;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 3rem;
+    }
+    &.mat-primary,
+    &.mat-warn,
+    &.mat-accent {
+      &:after {
+        background-image: url('assets/imgs/next_white.png');
+      }
+    }
+  }
+}
+
+// MATERIAL INPUT
+.mat-input-element {
+  color: $white !important;
+  min-height: 1.8rem;
+  caret-color: $white;
+  &::placeholder {
+    color: $grey;
+  }
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus {
+    transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s; // removes autocomplete background color
+  }
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-start,
+.mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border-radius: 0 !important;
+}
+.mat-form-field {
+  .mat-form-field-outline {
+    color: $white;
+    border-radius: 0;
+  }
+  &.mat-focused {
+    .mat-form-field-outline {
+      color: $white;
+    }
+  }
+  &.mat-form-field-invalid {
+    .mat-input-element {
+      color: mat-color($warn) !important;
+    }
+  }
+  &.readonly {
+    .mat-input-element {
+      cursor: default;
+    }
+  }
+}
+
+// MATERIAL INPUT - CUSTOM INPUT WHITE
+.input-white {
+  .mat-form-field-wrapper {
+    margin: 0.25em 0 0.5rem !important;
+  }
+  .mat-input-element {
+    color: mat-color($primary) !important;
+    font-size: 1rem;
+    min-height: 1.6rem;
+  }
+  &.mat-form-field {
+    &.mat-focused {
+      .mat-form-field-outline {
+        color: mat-color($accent);
+      }
+      &.ng-invalid {
+        .mat-form-field-outline {
+          color: mat-color($warn);
+        }
+      }
+      &.readonly {
+        .mat-form-field-outline {
+          color: $white;
+        }
+      }
+    }
+    &.ng-touched.ng-invalid {
+      .mat-input-element {
+        color: mat-color($warn) !important;
+      }
+    }
   }
 }
