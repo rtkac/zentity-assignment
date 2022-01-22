@@ -1,5 +1,18 @@
 # ZentityAssignment
 
+## Onboarding APP
+
+url `https://zentity-assignment-30cyeyuno-rtkac.vercel.app`
+
+### CREDENTIALS:
+
+username `Invisible John`
+&nbsp;
+password `PasswordPlease123`
+
+&nbsp;
+&nbsp;
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
 ## Development server
