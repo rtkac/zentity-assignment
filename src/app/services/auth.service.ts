@@ -24,7 +24,7 @@ export class AuthService {
 
   public logout(): Subscription {
     return of(sessionStorage.removeItem('onboarded'), sessionStorage.removeItem('username')).subscribe(() =>
-      this.router.navigate(['username']),
+      this.router.navigate(['']),
     );
   }
 }

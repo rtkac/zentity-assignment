@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { ProfileField } from 'src/app/models/profileField.model';
-import { ProfileFieldControlService } from 'src/app/services/profileFieldControl.service';
+import { ProfileField } from '../../../models/profileField.model';
+import { UserPatchData } from '../../../models/user.model';
+import { ProfileFieldControlService } from '../../../services/profileFieldControl.service';
+import { UserFacade } from '../../../store/user/user.facade';
 
 @Component({
   selector: 'app-edit-profile-form',
@@ -14,7 +16,7 @@ export class EditProfileFormComponent {
   profileEditForm!: FormGroup;
   payLoad = '';
 
-  constructor(private profileFieldControlService: ProfileFieldControlService) {}
+  constructor(private profileFieldControlService: ProfileFieldControlService, private userFacade: UserFacade) {}
 
   ngOnInit(): void {
     this.profileEditForm = this.profileFieldControlService.toFormGroup(this.fields as ProfileField<string>[]);
@@ -24,12 +26,11 @@ export class EditProfileFormComponent {
     this.fields?.splice(index, 1);
   }
 
-  onClear(key: string): void {
-    this.profileEditForm.controls[key].patchValue('');
+  onSave({ key, value }: UserPatchData) {
+    this.userFacade.patchUser({ key, value });
   }
 
-  onSubmit(): void {
-    this.payLoad = JSON.stringify(this.profileEditForm.getRawValue());
-    console.log(this.profileEditForm.value);
+  onClear(key: string): void {
+    this.profileEditForm.controls[key].patchValue('');
   }
 }

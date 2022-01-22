@@ -26,3 +26,8 @@ export interface UserData {
   user: User;
   setUsernameDone: boolean;
 }
+
+export interface UserPatchData {
+  key: string;
+  value?: string;
+}

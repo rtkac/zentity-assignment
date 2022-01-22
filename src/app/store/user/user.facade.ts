@@ -3,13 +3,14 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../app.reducer';
 import * as UserActions from './user.actions';
-import { UserData } from 'src/app/models/user.model';
+import { UserData, UserPatchData } from 'src/app/models/user.model';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserFacade {
-  user$ = this.store.select((state) => state.user); // eslint-disable-line ngrx/prefer-selector-in-select
+  user$ = this.store.pipe(map((state) => state.user));
 
   constructor(private store: Store<fromApp.AppState>) {} // eslint-disable-line ngrx/no-typed-global-store
 
@@ -27,5 +28,9 @@ export class UserFacade {
 
   setUsernameDone() {
     this.store.dispatch(UserActions.setUsernameDone());
+  }
+
+  patchUser(payload: UserPatchData) {
+    this.store.dispatch(UserActions.patchUser({ payload }));
   }
 }

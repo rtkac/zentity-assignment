@@ -33,21 +33,21 @@ export class ProfileFieldsService {
           }),
 
           new TextField({
-            key: 'contact.locations.address.streetName',
+            key: 'streetName',
             label: 'Address',
             value: `${homeAddress?.address.streetName} ${homeAddress?.address.streetNumber}`,
             required: true,
           }),
 
           new TextField({
-            key: 'contact.locations.address.suburb',
+            key: 'suburb',
             label: 'City',
             value: homeAddress?.address.suburb,
             required: true,
           }),
 
           new TextField({
-            key: 'contact.locations.address.postalCode',
+            key: 'postalCode',
             label: 'Postal Code',
             value: homeAddress?.address.postalCode,
             required: true,
@@ -55,7 +55,7 @@ export class ProfileFieldsService {
           }),
 
           new TextField({
-            key: 'contact.email',
+            key: 'email',
             label: 'E-mail',
             value: userData?.contact.email,
             type: 'email',
@@ -64,7 +64,7 @@ export class ProfileFieldsService {
           }),
 
           new TextField({
-            key: 'contact.phoneNumber',
+            key: 'phoneNumber',
             label: 'Phone',
             value: userData?.contact.phoneNumber,
             required: true,

@@ -1,5 +1,7 @@
+import { createFeature, createReducer, on } from '@ngrx/store';
+
 import { UserData } from '../../models/user.model';
-import { fetchUser, fetchUserSuccess, fetchUserFailed, setUsernameDone } from './user.actions';
+import { fetchUser, fetchUserSuccess, fetchUserFailed, setUsernameDone, patchUserSuccess } from './user.actions';
 
 export interface State {
   isLoading: boolean;
@@ -17,43 +19,51 @@ const initialState: State = {
   setUsernameDone: false,
 };
 
-export function userReducer(
-  state = initialState,
-  action:
-    | ReturnType<typeof fetchUser>
-    | ReturnType<typeof fetchUserSuccess>
-    | ReturnType<typeof fetchUserFailed>
-    | ReturnType<typeof setUsernameDone>,
-) {
-  switch (action.type) {
-    case fetchUser.type:
-      return {
+export const userReducer = createFeature({
+  name: 'user',
+  reducer: createReducer(
+    initialState,
+    on(
+      fetchUser,
+      (state): State => ({
         ...state,
         isLoading: true,
         isLoaded: false,
         error: false,
-      };
-    case fetchUserSuccess.type:
-      return {
+      }),
+    ),
+    on(
+      fetchUserSuccess,
+      (state, action): State => ({
         ...state,
         isLoading: false,
         isLoaded: true,
         error: false,
         user: action.payload,
-      };
-    case fetchUserFailed.type:
-      return {
+      }),
+    ),
+    on(
+      fetchUserFailed,
+      (state): State => ({
         ...state,
         isLoading: false,
         isLoaded: false,
         error: true,
-      };
-    case setUsernameDone.type:
-      return {
+      }),
+    ),
+    on(
+      setUsernameDone,
+      (state): State => ({
         ...state,
         setUsernameDone: true,
-      };
-    default:
-      return state;
-  }
-}
+      }),
+    ),
+    on(
+      patchUserSuccess,
+      (state, action): State => ({
+        ...state,
+        user: action.payload,
+      }),
+    ),
+  ),
+});

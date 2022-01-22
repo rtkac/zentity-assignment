@@ -10,6 +10,7 @@ import { ProfileField } from 'src/app/models/profileField.model';
 })
 export class EditProfileFieldComponent {
   @Output() handleDelete = new EventEmitter();
+  @Output() handleSave = new EventEmitter<{ key: string; value?: string }>();
   @Output() handleClear = new EventEmitter<string>();
   @Input() field!: ProfileField<string>;
   @Input() form!: FormGroup;
@@ -42,6 +43,7 @@ export class EditProfileFieldComponent {
   onSave(): void {
     if (this.isValid) {
       this.editedField = undefined;
+      this.handleSave.emit({ key: this.field.key, value: this.field.value });
     }
   }
 

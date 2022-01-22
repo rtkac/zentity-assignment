@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromApp from './store/app.reducer';
+import { UserEffects } from './store/user/user.effects';
 
 import { UserService } from './services/user.service';
 
@@ -26,7 +27,7 @@ import { AppComponent } from './app.component';
     MaterialModule,
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([]), // !!! TODO - are effects really needed? (@ngrx/effects package)
+    EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
   ],
   providers: [

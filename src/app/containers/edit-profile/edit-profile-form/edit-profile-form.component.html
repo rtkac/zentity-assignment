@@ -1,10 +1,11 @@
 <div class="edit-profile-form-wrapper">
-  <form [formGroup]="profileEditForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="profileEditForm">
     <div *ngFor="let field of fields; let i = index">
       <app-edit-profile-field
         [field]="field"
         [form]="profileEditForm"
         (handleDelete)="onDelete(i)"
+        (handleSave)="onSave({ key: field.key, value: field.value })"
         (handleClear)="onClear($event)"
       ></app-edit-profile-field>
     </div>
