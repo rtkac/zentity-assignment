@@ -8,30 +8,6 @@ body {
   color: mat-color($primary);
 }
 
-.app {
-  height: 100%;
-  &-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  &-error {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 0 2.5rem;
-    .mat-icon {
-      font-size: 3rem;
-      width: 3.125rem;
-      height: 3.125rem;
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
 .container {
   display: flex;
   width: 22.1875rem;

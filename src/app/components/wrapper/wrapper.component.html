@@ -1,0 +1,12 @@
+<div class="container m-auto">
+  <div class="wrapper">
+    <div class="wrapper__top">
+      <app-header></app-header>
+      <div>
+        <img src="{{ iconPath }}" alt="{{ iconTitle }}" class="wrapper__img img-fluid" />
+        <h2 class="m-auto color-warn" innerHtml="{{ title }}"></h2>
+      </div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 
 ## Onboarding APP
 
-url `https://zentity-assignment-30cyeyuno-rtkac.vercel.app`
+url [https://zentity-assignment.vercel.app](https://zentity-assignment.vercel.app/)
 
 ### CREDENTIALS:
 
