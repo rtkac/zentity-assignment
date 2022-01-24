@@ -9,7 +9,7 @@ export class UsernameValidator {
       return userFacade.user$
         .pipe(
           map((userState) => {
-            if (control.value !== userState.user?.user.username) {
+            if (control.value !== userState?.user.username) {
               return { usernameInvalid: true };
             }
             return null;

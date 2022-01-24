@@ -1,14 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, catchError, switchMap } from 'rxjs';
+import { map, catchError, switchMap, of } from 'rxjs';
 
 import { UserData } from '../../models/user.model';
 import * as UserActions from './user.actions';
-import { UserFacade } from './user.facade';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable()
 export class UserEffects {
+  fetchUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.fetchUser),
+      switchMap(() => {
+        return this.http.get<UserData>('assets/data.json');
+      }),
+      map((response) => {
+        this.authService.hasValidUsername(response.user.username).then((hasValidUsername) => {
+          if (!hasValidUsername) {
+            this.authService.logout();
+          }
+        });
+        return UserActions.fetchUserSuccess({ payload: response });
+      }),
+      catchError(() => {
+        return of(UserActions.fetchUserFailed());
+      }),
+    );
+  });
   patchUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.patchUser),
@@ -38,5 +57,5 @@ export class UserEffects {
     );
   });
 
-  constructor(private actions$: Actions, private http: HttpClient, private userFacade: UserFacade) {}
+  constructor(private actions$: Actions, private http: HttpClient, private authService: AuthService) {}
 }

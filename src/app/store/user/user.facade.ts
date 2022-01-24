@@ -3,14 +3,18 @@ import { Store } from '@ngrx/store';
 
 import * as fromApp from '../app.reducer';
 import * as UserActions from './user.actions';
+import * as selector from './user.selectors';
 import { UserData, UserPatchData } from 'src/app/models/user.model';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserFacade {
-  user$ = this.store.pipe(map((state) => state.user));
+  user$ = this.store.select(selector.selectUser);
+  selectSetUsernameDone$ = this.store.select(selector.selectSetUsernameDone);
+  selectUserLoading$ = this.store.select(selector.selectUserLoading);
+  selectUserLoaded$ = this.store.select(selector.selectUserLoaded);
+  selectUserError$ = this.store.select(selector.selectUserError);
 
   constructor(private store: Store<fromApp.AppState>) {} // eslint-disable-line ngrx/no-typed-global-store
 

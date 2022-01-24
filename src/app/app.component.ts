@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { AuthService } from './services/auth.service';
 import { UserFacade } from './store/user/user.facade';
 
 @Component({
@@ -10,35 +9,28 @@ import { UserFacade } from './store/user/user.facade';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  userSubscription$ = new Subscription();
-  logoutSubscription$ = new Subscription();
+  userLoadingSubscription$ = new Subscription();
+  userLoadedSubscription$ = new Subscription();
+  userErrorSubscription$ = new Subscription();
   isLoading = false;
   isLoaded = false;
   isError = false;
 
-  constructor(private userFacade: UserFacade, private authService: AuthService) {}
+  constructor(private userFacade: UserFacade) {}
 
   ngOnInit(): void {
-    this.userSubscription$ = this.userFacade.user$.subscribe((userState) => {
-      this.isLoading = userState.isLoading;
-      if (userState.user?.user) {
-        this.authService.isAuthorized.then((isAuthorized) => {
-          if (isAuthorized) {
-            this.authService.hasValidUsername(userState.user?.user.username).then((validUsername) => {
-              if (!validUsername) {
-                this.logoutSubscription$ = this.authService.logout();
-              }
-            });
-          }
-          this.isLoaded = userState.isLoaded;
-          this.isError = userState.error;
-        });
-      }
-    });
+    this.userLoadingSubscription$ = this.userFacade.selectUserLoading$.subscribe(
+      (isLoading) => (this.isLoading = isLoading),
+    );
+    this.userLoadedSubscription$ = this.userFacade.selectUserLoaded$.subscribe(
+      (isLoaded) => (this.isLoaded = isLoaded),
+    );
+    this.userErrorSubscription$ = this.userFacade.selectUserError$.subscribe((isError) => (this.isError = isError));
   }
 
   ngOnDestroy(): void {
-    this.userSubscription$.unsubscribe();
-    this.logoutSubscription$.unsubscribe();
+    this.userLoadingSubscription$.unsubscribe();
+    this.userLoadedSubscription$.unsubscribe();
+    this.userErrorSubscription$.unsubscribe();
   }
 }

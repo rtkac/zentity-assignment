@@ -28,7 +28,7 @@ export class PasswordValidator {
       return userFacade.user$
         .pipe(
           map((userState) => {
-            if (control?.value !== userState.user?.user.password) {
+            if (control?.value !== userState?.user.password) {
               controls.get(controlName)?.setErrors({ passwordInvalid: true });
               return { passwordInvalid: true };
             }

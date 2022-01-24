@@ -24,7 +24,6 @@ export interface User {
 export interface UserData {
   onboarded: boolean;
   user: User;
-  setUsernameDone: boolean;
 }
 
 export interface UserPatchData {

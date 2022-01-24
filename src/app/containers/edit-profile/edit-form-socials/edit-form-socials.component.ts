@@ -17,7 +17,7 @@ export class EditProfileSocials implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userSubscription$ = this.userFacade.user$.subscribe((userState) => {
-      this.socialItems = userState.user?.user.contact.socialNetworks;
+      this.socialItems = userState?.user.contact.socialNetworks;
     });
   }
 

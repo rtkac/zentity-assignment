@@ -12,7 +12,7 @@ export class ProfileFieldsService {
   getFields() {
     return this.userFacade.user$.pipe(
       map((userState) => {
-        const userData = userState.user?.user;
+        const userData = userState?.user;
         const homeAddress = userData?.contact.locations.find((location) => location.name === 'address');
 
         const fields: ProfileField<string>[] = [

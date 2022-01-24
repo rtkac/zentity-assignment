@@ -6,7 +6,7 @@ import { fetchUser, fetchUserSuccess, fetchUserFailed, setUsernameDone, patchUse
 export interface State {
   isLoading: boolean;
   isLoaded: boolean;
-  error: boolean;
+  isError: boolean;
   user: UserData | null;
   setUsernameDone: boolean;
 }
@@ -14,7 +14,7 @@ export interface State {
 const initialState: State = {
   isLoading: false,
   isLoaded: false,
-  error: false,
+  isError: false,
   user: null,
   setUsernameDone: false,
 };
@@ -29,7 +29,7 @@ export const userReducer = createFeature({
         ...state,
         isLoading: true,
         isLoaded: false,
-        error: false,
+        isError: false,
       }),
     ),
     on(
@@ -38,7 +38,7 @@ export const userReducer = createFeature({
         ...state,
         isLoading: false,
         isLoaded: true,
-        error: false,
+        isError: false,
         user: action.payload,
       }),
     ),
@@ -48,7 +48,7 @@ export const userReducer = createFeature({
         ...state,
         isLoading: false,
         isLoaded: false,
-        error: true,
+        isError: true,
       }),
     ),
     on(
